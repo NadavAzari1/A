@@ -3,7 +3,7 @@ name: Cycle Import Check
 on:
   push:
     branches:
-      *
+      - '*'
 
 jobs:
   build:
