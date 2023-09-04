@@ -23,7 +23,7 @@ jobs:
 
     - name: Check for cycle in output
       run: |
-        if grep -q 'cycle' <<< "$(go vet ./...)"; then
+        if grep -q 'import cycle not allowed' <<< "$(go vet ./...)"; then
           echo "Error: go vet detected cycle in the code."
           exit 1
         fi
