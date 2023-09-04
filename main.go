@@ -1,7 +1,12 @@
 package A
 
-import "fmt"
+import (
+	"fmt"
+
+	b "github.com/NadavAzari1/B"
+)
 
 func HelloWorldA() {
+	b.HelloWorldB()
 	fmt.Println("Hello Wrold A!")
 }

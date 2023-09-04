@@ -1,0 +1,29 @@
+name: Cycle Import Check
+
+on:
+  push:
+    branches:
+      - main  # Change this to match the default branch name of your repository
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: ^1.17  # Change to the desired Go version
+
+    - name: Run go vet
+      run: go vet ./...
+
+    - name: Check for cycle in output
+      run: |
+        if grep -q 'cycle' <<< "$(go vet ./...)"; then
+          echo "Error: go vet detected cycle in the code."
+          exit 1
+        fi
